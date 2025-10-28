@@ -5,12 +5,12 @@ void setup() {
   uint8_t sreg;
 
   asm volatile(
-    "ldi r16, 50        \n\t"   
-    "ldi r17, 200         \n\t"
-    "sub r16, r17         \n\t"   
-    "mov r18, r16         \n\t"   
-    "mov %[res], r18      \n\t"   
-    "in  %[sreg], __SREG__\n\t"   
+    "ldi r16, 50 \n\t"   
+    "ldi r17, 200 \n\t"
+    "sub r16, r17 \n\t"   
+    "mov r18, r16 \n\t"   
+    "mov %[res], r18 \n\t"   
+    "in  %[sreg], __SREG__ \n\t"   
     : [res] "=r" (res), [sreg] "=r" (sreg)
     :
     : "r16", "r17", "r18"
