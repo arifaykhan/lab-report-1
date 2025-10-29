@@ -5,15 +5,13 @@ void setup() {
   DDRD |= (1 << PD6); 
 
   TCCR0A = (1 << WGM01) | (1 << COM0A0); //CTC | toggle on compare match
-  OCR0A  = 250;                        
+  OCR0A  = 124;                        
   TCCR0B = (1 << CS02) | (1 << CS00);  //101 = prescaler 1024
 
   TCCR1A = (1 << COM1B0); //toggle on compare match
-  TCCR1B = (1 << WGM12); //CTC
+  TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10); //CTC | prescaler 64
   OCR1A  = 3905;           
   OCR1B  = 3905;
-  TCCR1B = (1 << CS11) | (1 << CS10); //prescaler 64
-
 
   TCCR2A = (1 << WGM21) | (1 << COM2A0);
   OCR2A  = 255;
