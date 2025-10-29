@@ -6,10 +6,8 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if((PIND & B00000100) == 4){
-    PORTB |= (1 << PORTB5);
-  }
-  else{
-    PORTB &= ~(1 << PORTB5);
+  if(PIND & B00000100){
+    PORTB ^= (1 << PORTB5);
+    delay(100);
   }
 }
