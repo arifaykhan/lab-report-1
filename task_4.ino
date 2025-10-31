@@ -1,8 +1,6 @@
-#include <EEPROM.h>
-
-  uint8_t counter = 0;
-  uint8_t counterbutton1 = 0;
-  uint8_t counteraddress = 0;
+uint8_t counter = 0;
+uint8_t counterbutton1 = 0;
+uint8_t counteraddress = 0;
 
 void setup() {
   // put your setup code here, to run once:
