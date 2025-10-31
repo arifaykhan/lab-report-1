@@ -19,7 +19,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   uint8_t counterbutton0 = PIND & (1 << PD4);
-  if (PIND & (1 << PD4)){
+  if (counterbutton0 && !counterbutton1){
     counter++;
     while (EECR & (1 << EEPE));
       EEAR = 0;
