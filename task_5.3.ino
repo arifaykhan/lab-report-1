@@ -35,38 +35,36 @@ void loop() {
       waiting_release = true;
       release_count = 0;
     }
-  } else {
+  } 
+  else {
     if ((PIND & (1 << PD5)) != 0) {
       if (release_count < 255) ++release_count;
-    } else {
-      release_count = 0;
-    }
+    } 
+    else release_count = 0;
     if (release_count >= 5) waiting_release = false;
   }
 
-  uint8_t duty1 = 0, duty2 = 0, duty3 = 0;
+  uint8_t dutypd6 = 0, dutypb3 = 0, dutypd3 = 0;
 
-  if (state == 0) {
-    duty1 = duty2 = duty3 = 0;
-  } else {
-    uint8_t s = state - 1;
-    uint8_t block = s / 4;
-    uint8_t step_idx = s % 4;
-    uint8_t duty = dutysteps[step_idx];
+  if (state == 0) dutypd6 = dutypb3 = dutypd3 = 0;
+  else {
+    uint8_t state1 = state - 1;
+    uint8_t group = state1 / 4;
+    uint8_t index = state1 % 4;
+    uint8_t duty = dutysteps[index];
 
-    if (block == 0) {
-      duty1 = duty;
-    } else if (block == 1) {
-      duty1 = dutysteps[3];
-      duty2 = duty;
-    } else {
-      duty1 = dutysteps[3];
-      duty2 = dutysteps[3];
-      duty3 = duty;
-    }
+  if (group == 0) dutypd6 = duty;
+  else if (group == 1) {
+      dutypd6 = dutysteps[3];
+      dutypb3 = duty;
+  } 
+  else {
+      dutypd6 = dutysteps[3];
+      dutypb3 = dutysteps[3];
+      dutypd3 = duty;
   }
-
-  OCR0A = duty1;
-  OCR2A = duty2;
-  OCR2B = duty3;
+}
+  OCR0A = dutypd6;
+  OCR2A = dutypb3;
+  OCR2B = dutypd3;
 }
